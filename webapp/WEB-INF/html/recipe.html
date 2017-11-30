@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" ng-app="RecipeApp">
+<head>
+    <meta charset="utf-8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+     
+     <!-- angular -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+   <!--  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script> -->
+   <!--  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script> -->
+    <!-- <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+	 -->
+	 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+     
+     <!-- app -->
+     <link rel="stylesheet" href="resources/css/modal.css"/>
+     <!-- <script type="text/javascript" src="resources/js/modal.js"></script> -->
+     
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="resources/css/app.css"/>
+	<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	
+	<!-- jquery -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+	<script type="text/javascript"  src="resources/ext/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
+  	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+  	<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script src="resources/ext/bootstrap.min.js" ></script>
+	
+		
+	<!-- angular -->	
+	<!-- <script src="resources/ext/angular.min.js"></script>
+	<script src="resources/js/lib/angular/angular.js"></script> -->
+
+	<!-- ui-grid -->
+	 <script src="resources/ext/ui-grid.js"></script>
+    <link rel="stylesheet" href="resources/ext/ui-grid.css" type="text/css"/>
+    
+	
+	
+	<!-- control -->
+	 <script src="resources/js/controllers/ItalianController.js"></script>
+	 <script src="resources/js/controllers/IndianController.js"></script>
+	 <script src="resources/js/controllers/MexicanController.js" ></script>
+	 <script src="resources/js/recipe.js"></script>
+	 <script src="resources/js/controllers/RecipeController.js"></script>
+</head>
+
+<body background="resources/images/a4.jpg">
+ <div id="wrapper">
+	<div class="well" style="background-color: rgba(0,0,0,0.3); border: none;" align="center"><h1 style="color: #F1F3F3">Recipe Manager</h1></div>
+
+	<ul class="breadcrumb">
+		<li class="disabled"><a href="#">Home</a></li>
+		<li>Recipes</li>
+	</ul>
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Recipe Category
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" style="min-width:143px;">
+      <li><a href="#/indian" ng-click="dumm()">Indian</a></li>
+      <li><a href="#/mexican">Mexican</a></li>
+      <li class="disabled"><a href="#/chinese">Chinese</a></li>
+      <li><a href="#/italian">Italian</a></li>
+    </ul>
+</div>
+	
+	<hr class="" />
+    <div ng-view=""></div>
+</div>
+
+</body>	
+
+	
+</html>

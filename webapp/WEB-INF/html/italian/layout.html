@@ -1,0 +1,277 @@
+
+	<div class="container">
+		
+	<!-- 	<span><button ng-click="dums()">Click Me</button></span> -->
+		
+		<div style="float:left">
+			<div class="panel-group">
+			    <div class="panel panel-primary" style="float:left;">
+				      <div class="panel-heading"><h4>Italian Dishes</h4></div>
+				      <div class="panel-body"><h5>{{data12}}</h5></div>
+				      <div class="panel-footer">
+				      </div>
+				 </div>
+				
+				<div class="panel panel-default">
+				    <div class="panel-heading"></div>
+				      <div class="panel-body">
+				 		<div class="btn-group" style="padding:18px 10px;">
+						  <div class="btn-group"><!-- add -->
+						    <button type="button" class="btn btn-info btn-lg" ng-click="openAddRecipeForm()">
+						    	<span style="float:left;" class="glyphicon glyphicon-plus"></span>&nbsp; Add Recipe</button>
+						  </div>
+						  <div class="btn-group"><!-- search -->
+						    <button type="button" class="btn btn-info btn-lg"><span style="float:left" class="glyphicon glyphicon-search"></span>&nbsp; Search</button>
+						  </div>
+						  <div class="btn-group"><!-- view -->
+						    <button type="button" class="btn btn-info btn-lg"><span style="float:left" class="glyphicon glyphicon-fullscreen"></span> &nbsp; View all  Italian Recipes</button>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+	
+	
+	<!-- Add Recipe Form -->
+
+			
+			<div ng-show="showRecipeForm" class="well">
+				  <h2>Add Recipe</h2>
+				  <p>You can add a Recipe of your choice and manage its ingredients here</p>
+				  <div class="panel-group">
+				  <div class="panel panel-primary">
+				    
+				    <div class="panel-heading"><h4>Name a recipe and start adding ingrdients to it.</h4></div>
+						<div class="panel panel-body">
+							<div ng-show="recipeNameInit=true">
+							<form class="form-vertical">
+								 <label for="recipe">Recipe:</label>
+								 <span>
+								 		<input type="text" id="recipe" ng-model="recipe.name" ng-disabled="recipeNameDisable"  class="form-control" placeholder=" recipe name" style="border: none; border-bottom: 2px red;"/>
+								 		<button class="btn btn-primary btn-sm" ng-disabled="addIngredientBtn" ng-click="openIngredientsForm()"><span class="glyphicon glyphicon-plus-sign glyphicon-lg"></span></button>
+								 </span>
+							</form>
+							</div>
+						</div>
+						<div class="panel panel-body" ng-show="showAddedIngredient">
+						
+							<h3>Ingredients added:</h3>
+							<hr/>
+							<!-- <div ng-repeat="ingredients in list">
+								<span>{{ingredient.ingredientIn}}</span>
+							</div> -->
+							
+							
+							<table class="table table-striped">
+								<tbody>
+									<tr ng-repeat="ing in recipeData">
+										<td><span>{{ing.I}}</span></td>
+										<td>
+											<button class="btn btn-primary btn-sm" ng-click="openIngredientsForm()"><span class="glyphicon glyphicon-plus-sign glyphicon-lg"></span></button>
+											<button class="btn btn-danger btn-sm" ng-click="removeIngredient()"><span class="glyphicon glyphicon-minus-sign glyphicon-lg"></span></button>
+										</td>
+									</tr>
+								</tbody>
+							</table> 
+							
+						</div>
+						<div ng-show="showIngredientsForm" class="panel panel-default">
+							<div class="panel-heading">
+								<h4>Ingredients for {{recipe.name}}</h4>
+							</div>
+							<div class="panel-body">
+								<form class="form-vertical">
+										<label for="ingredient">Ingredient: </label>
+								 		<input type="text" id="ingredient" ng-model="ingredient.ingredientIn" class="form-control" placeholder=" ingredient name" style="border: none;"/>
+								 		<label for="qty">Quantity: </label>
+								 		<input type="text" id="qty" ng-model="ingredient.qtyIn" class="form-control" placeholder=" quantity" style="border: none;"/>
+								 		<label for="qty">Price: </label>
+								 		<input type="text" id="price" ng-model="ingredient.priceIn" class="form-control" placeholder=" price" style="border: none;"/>
+								 		<label for="qty">Units: </label>
+								 		<input type="text" id="unit" ng-model="ingredient.unitIn" class="form-control" placeholder=" units" style="border: none;"/>
+									<span>
+								 		<button type="button" class="btn btn-info btn-sm" ng-click="clubRI(recipe, ingredient)">
+											<span style="float:left;" class="glyphicon glyphicon-plus-sign"></span>
+										</button>
+										<button type="button" class="btn btn-danger btn-sm" ng-click="closeIngredientsForm()">
+										<span style="float:left;" class="glyphicon glyphicon-remove-sign"></span>
+										</button>
+										
+										<!-- This is to be used from the show of ingredients whilst being added under the recipe -->
+										<!-- <button type="button" class="btn btn-danger btn-sm">
+											 <span style="float:left;" class="glyphicon glyphicon-minus-sign"></span>
+										</button> -->
+								 	</span>
+								</form>
+							</div>
+				      	
+						</div>
+				<div class="panel-footer">
+					<button ng-show="addRecipeBtn"  ng-disabled="addRIBtn" type="button" class="btn btn-success btn-sm" ng-click="pushRI(recipe,ingredient)">
+					<span style="float:left;" class="glyphicon glyphicon-plus"></span>&nbsp; Add Recipe</button>
+					<button ng-show="addNewRecipeBtn"  ng-disabled="addRIBtn" type="button" class="btn btn-success btn-sm" ng-click="newAdd(recipe,ingredient)">
+					<span style="float:left;" class="glyphicon glyphicon-plus"></span>&nbsp; Add New Recipe</button>
+				</div>
+				    </div>
+				    
+				  </div>
+			</div>
+				
+		
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	<!-- Add Ingredients form -->
+	
+	
+
+
+			<!-- ...............GRIDS.................-->
+			
+	<!-- Recipe Grid -->
+	<div class="well">
+		<div>
+			<h1>Italian Recipes</h1>
+			 <div class="gridRecipes" ui-grid="gridOpts" ></div> 
+		</div>
+	
+	
+		<!-- Ingredients' Grid -->
+		<div id="manageIngr" class="collapse">
+	    	<h1>{{recipeName}}</h1>
+	    		 <div>
+					 <div class="gridIngr" ui-grid="gridOptions" ></div> 
+				</div> 
+	  	</div>
+  </div><!-- gridWell -->
+  
+  
+  
+  
+  </div><!-- float:left -->
+  	
+  </div><!-- container -->
+  
+  
+  
+  
+  <span ng-show="successMsg">{{updateSuccessMsg}}</span>
+  <span ng-show="duplicateMsg">{{updateFailureMsg}}</span>
+  
+ <!--  </div>well -->
+  
+
+<!-- <style>
+	.modal-header {
+    padding: 2px 16px;
+    background-color: #60B7E7;
+    color: black;
+	}
+	
+	.modal-body {padding: 2px 16px;}
+	
+	.modal-footer {
+	    padding: 2px 16px;
+	    background-color: #60B7E7;
+	    color: black;
+	}
+</style> -->
+
+
+			<!-- ............... MODALS...................  -->
+
+<!--  View Recipe modal -->
+<div ng-show="recipePopUp" class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><h1>{{recipeName}}</h1></h4>
+        </div>
+        <div class="modal-body">
+         			
+         			  <table class="table table-hover">
+         			 <!--  <ul>
+					  <li> <h4>Here are the ingredients for {{recipeName}}</h4> </li>
+					
+					</ul> -->
+					    <thead>
+					      <tr>
+					        <th>Sl.no</th>
+					        <th>Ingredients</th>
+					      </tr>
+					    </thead>
+					    
+					    <tbody>
+					      <tr>
+					        <td>{{ItalianRecipes.burrito[0].Slno}}</td>
+					        <td>{{ItalianRecipes.burrito[0].Ingredient}}</td>
+					      </tr>
+					      <tr>
+					        <td>{{ItalianRecipes.burrito[1].Slno}}</td>
+					        <td>{{ItalianRecipes.burrito[1].Ingredient}}</td>
+					      </tr>
+					      <tr>
+					        <td>{{ItalianRecipes.burrito[2].Slno}}</td>
+					        <td>{{ItalianRecipes.burrito[2].Ingredient}}</td>
+					      </tr>
+					      </tbody>
+					  </table>
+         			
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Ingredients editing modal -->
+<div ng-show="showUpdatePop" class="modal fade" id="editIngrModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{ingredientName}}</h4>
+        </div>
+        <div class="modal-body">
+        		 			
+        		 	<div class="well">
+        		 		<form class="form-horizontal" role="form">
+        		 			<div class="form-group">
+    	    		 			<label>Ingredient </label>
+	        		 			<input type="text" class="form-control" value="{{newIngr.Name}}"/>
+        		 			</div>
+        		 			<div class="form-group">
+    	    		 			<label>Quantity</label>
+	        		 			<input type="text" class="form-control" value="{{newIngr.Qty}}"/>
+        		 			</div>
+        		 			<div class="form-group">
+    	    		 			<label>Price</label>
+	        		 			<input type="text" class="form-control" value="{{newIngr.Price}}"/>
+        		 			</div>
+        		 			<div class="form-group">
+    	    		 			<label>Units</label>
+	        		 			<input type="text"  disabled="true" class="form-control" value="{{newIngr.Unit}}"/>
+        		 			</div>
+							    <button type="submit" ng-click="update(newIngr)" class="btn btn-default">Submit</button>
+        		 		</form>
+     	 			</div>
+        </div>
+        		 			
+        		 			
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>

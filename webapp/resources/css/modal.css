@@ -1,0 +1,14 @@
+@CHARSET "ISO-8859-1";
+.modal-header {
+    padding: 2px 16px;
+    background-color: #60B7E7;
+    color: black;
+	}
+	
+	.modal-body {padding: 2px 16px;}
+	
+	.modal-footer {
+	    padding: 2px 16px;
+	    background-color: #60B7E7;
+	    color: black;
+	}
